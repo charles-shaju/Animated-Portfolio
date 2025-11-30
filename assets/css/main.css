@@ -1,0 +1,200 @@
+:root {
+    --bg-primary: #0b1914;
+    --bg-secondary: #0f2f26;
+    --text-primary: #f2fff9;
+    --text-muted: rgba(179, 255, 236, 0.72);
+    --accent: #14ffb9;
+    --accent-highlight: #b3ffec;
+    --accent-border: rgba(20, 255, 185, 0.28);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text-primary);
+    background: radial-gradient(circle at 22% 16%, rgba(20, 255, 185, 0.18), transparent 60%),
+        radial-gradient(circle at 78% 12%, rgba(11, 47, 38, 0.7), transparent 65%),
+        radial-gradient(circle at 60% 82%, rgba(2, 61, 45, 0.55), transparent 70%),
+        var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    background: radial-gradient(circle at 30% 40%, rgba(179, 255, 236, 0.18), transparent 60%),
+        radial-gradient(circle at 70% 65%, rgba(20, 255, 185, 0.12), transparent 65%);
+    filter: blur(120px);
+    opacity: 0.55;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: -1;
+}
+
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    padding: 3rem 4rem;
+    border-radius: 28px;
+    backdrop-filter: blur(28px);
+    background: linear-gradient(145deg, rgba(13, 49, 40, 0.82), rgba(7, 28, 22, 0.68));
+    border: 1px solid var(--accent-border);
+    box-shadow: 0 30px 70px rgba(0, 17, 12, 0.65), 0 0 25px rgba(20, 255, 185, 0.25);
+    max-width: 780px;
+    overflow: hidden;
+}
+
+.content::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(179, 255, 236, 0.22);
+    pointer-events: none;
+    box-shadow: 0 0 40px rgba(20, 255, 185, 0.18);
+}
+
+.intro-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 3rem;
+}
+
+.intro-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.eyebrow {
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    margin: 0;
+    text-shadow: 0 0 25px rgba(20, 255, 185, 0.25);
+}
+
+.lead {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 28ch;
+}
+
+.lead strong {
+    color: var(--accent-highlight);
+}
+
+.intro-icon {
+    position: relative;
+    width: clamp(160px, 24vw, 220px);
+    height: clamp(160px, 24vw, 220px);
+    display: grid;
+    place-items: center;
+}
+
+.intro-icon::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20, 255, 185, 0.15) 0%, rgba(20, 255, 185, 0) 70%);
+    filter: blur(4px);
+    animation: haloPulse 4s ease-in-out infinite;
+}
+
+.lottie-slot {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(160deg, rgba(15, 47, 38, 0.85), rgba(11, 25, 20, 0.55));
+    border: 1px solid rgba(20, 255, 185, 0.35);
+    box-shadow: 0 0 45px rgba(20, 255, 185, 0.5), inset 0 0 30px rgba(11, 25, 20, 0.65);
+    transition: box-shadow 0.4s ease;
+}
+
+.lottie-slot[data-loaded="true"] {
+    box-shadow: 0 0 55px rgba(20, 255, 185, 0.6), inset 0 0 25px rgba(11, 25, 20, 0.6);
+}
+
+.lottie-fallback {
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    color: var(--accent-highlight);
+    text-transform: uppercase;
+}
+
+@keyframes haloPulse {
+    0%, 100% {
+        opacity: 0.55;
+        transform: scale(0.98);
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 720px) {
+    .content {
+        margin: 0 1rem;
+        padding: 2.75rem;
+        border-radius: 24px;
+    }
+
+    .content::after {
+        border-radius: 24px;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .intro-icon {
+        margin: 0 auto;
+    }
+
+    .eyebrow {
+        letter-spacing: 0.28em;
+    }
+
+    .lead {
+        font-size: 0.98rem;
+        margin: 0 auto;
+    }
+}
