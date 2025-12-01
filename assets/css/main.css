@@ -6,6 +6,7 @@
     --accent: #7df0c6;
     --accent-secondary: #f4b860;
     --accent-soft: rgba(125, 240, 198, 0.28);
+    --accent-glow: rgba(125, 240, 198, 0.5);
 }
 
 * {
@@ -31,6 +32,19 @@ body {
     overflow: hidden;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    inset: -25%;
+    background: radial-gradient(circle at 32% 40%, rgba(125, 240, 198, 0.14), transparent 65%),
+        radial-gradient(circle at 68% 62%, rgba(244, 184, 96, 0.12), transparent 70%);
+    filter: blur(110px);
+    opacity: 0.45;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: -1;
+}
+
 #bg-canvas {
     position: fixed;
     inset: 0;
@@ -43,11 +57,22 @@ body {
     position: relative;
     padding: 3rem 4rem;
     border-radius: 28px;
-    backdrop-filter: blur(24px);
-    background: linear-gradient(150deg, rgba(8, 43, 35, 0.82), rgba(5, 24, 19, 0.62));
-    border: 1px solid rgba(244, 184, 96, 0.25);
-    box-shadow: 0 28px 70px rgba(3, 16, 13, 0.65);
+    backdrop-filter: blur(26px);
+    background: linear-gradient(150deg, rgba(8, 43, 35, 0.58), rgba(5, 24, 19, 0.32));
+    border: 1px solid rgba(125, 240, 198, 0.22);
+    box-shadow: 0 28px 70px rgba(3, 16, 13, 0.6), 0 0 32px rgba(125, 240, 198, 0.18);
     max-width: 720px;
+}
+
+.content::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(125, 240, 198, 0.25);
+    pointer-events: none;
+    box-shadow: 0 0 60px rgba(125, 240, 198, 0.22);
+    opacity: 0.75;
 }
 
 .intro-grid {
@@ -102,9 +127,9 @@ h1 {
     overflow: hidden;
     display: grid;
     place-items: center;
-    background: linear-gradient(155deg, rgba(9, 38, 31, 0.72), rgba(5, 20, 16, 0.55));
-    border: 1px solid rgba(244, 184, 96, 0.18);
-    box-shadow: 0 20px 45px rgba(4, 17, 14, 0.6), inset 0 0 22px rgba(4, 28, 21, 0.55);
+    background: linear-gradient(155deg, rgba(9, 38, 31, 0.62), rgba(5, 20, 16, 0.45));
+    border: 1px solid rgba(125, 240, 198, 0.28);
+    box-shadow: 0 20px 45px rgba(4, 17, 14, 0.6), inset 0 0 22px rgba(4, 28, 21, 0.55), 0 0 30px rgba(125, 240, 198, 0.28);
 }
 
 .lottie-fallback {
